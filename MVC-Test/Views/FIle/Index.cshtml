@@ -15,11 +15,6 @@
 
 <br/>
 
-<form asp-action="Download" asp-controller="Home" method="get" enctype="multipart/form-data">
-    <input type="text" name="path" /><br>
-    <input type="submit" value="Скачать" />
-</form>
-
 @Model.path
   <div class="row row-cols-3">
 @foreach (var f in Directory.GetDirectories(Model.path))
