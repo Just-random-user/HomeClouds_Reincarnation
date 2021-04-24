@@ -5,6 +5,14 @@
 
 <h3>Выберите файл для загрузки</h3>
 <form asp-action="Upload" asp-controller="Home" method="post" enctype="multipart/form-data">
-    <input type="file" name="upload" /><br>
+    <input type="file" name="file" /><br>
     <input type="submit" value="Загрузить" />
+    
+</form>
+
+<br/>
+
+<form asp-action="Download" asp-controller="Home" method="get" enctype="multipart/form-data">
+    <input type="text" name="path" /><br>
+    <input type="submit" value="Скачать" />
 </form>
