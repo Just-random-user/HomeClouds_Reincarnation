@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="Views\Login\" />
     <Folder Include="wwwroot\CSS\" />
-    <Folder Include="wwwroot\Icons\" />
     <Folder Include="wwwroot\Scripts\" />
   </ItemGroup>
 
