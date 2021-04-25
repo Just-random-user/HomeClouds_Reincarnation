@@ -1,0 +1,13 @@
+﻿@model AuthTest.Models.User;
+@{ 
+    ViewData["Title"] = "File explorer";
+}
+
+
+<h1>
+    File explorer
+</h1>
+<h2>
+    @Model?.Login
+</h2>
+<a asp-action="Logout" asp-controller="Account">Logout</a>
