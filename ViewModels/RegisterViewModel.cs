@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AuthTest.ViewModels
+namespace Clouds.ViewModels
 {
     public class RegisterViewModel
     {

@@ -1,15 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
+using System.IO;
 
-namespace AuthTest.ViewModels
+#nullable enable
+
+namespace Clouds.ViewModels
 {
     public class FileViewModel
     {
-        public string Path { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public string Icon { get; set; }
+        public string? Login { get; set; }
+        public string? Path { get; set; }
+        public IFormFile Upload { get; set; }
+
+        public FileViewModel() { }
+        public FileViewModel(string? path, string login)
+        {
+            Login = login;
+            Path = path;
+        }
     }
 }

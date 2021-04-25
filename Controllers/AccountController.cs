@@ -1,6 +1,6 @@
-﻿using AuthTest.Data;
-using AuthTest.Models;
-using AuthTest.ViewModels;
+﻿using Clouds.Data;
+using Clouds.Models;
+using Clouds.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace AuthTest.Controllers
+namespace Clouds.Controllers
 {
     public class AccountController : Controller
     {
@@ -58,7 +58,7 @@ namespace AuthTest.Controllers
                     db.Users.Add(new User { Login = model.Login, Password = model.Password });
                     await db.SaveChangesAsync();
 
-                    await Authenticate(model.Login); // аутентификация
+                    await Authenticate(model.Login);
 
                     return RedirectToAction("FileExplorer", "Home");
                 }

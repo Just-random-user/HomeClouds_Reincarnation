@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AuthTest.Models;
+using Clouds.Models;
 
-namespace AuthTest.Data
+namespace Clouds.Data
 {
     public class CloudsDbContext : DbContext
     {
