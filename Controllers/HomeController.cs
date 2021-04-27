@@ -20,7 +20,7 @@ namespace Clouds.Controllers
         {
             if (String.IsNullOrEmpty(file.Path))
             {
-                file = new FileViewModel("C:\\", User.Identity.Name);//тута вставь свой путь C: нужно добавить отображение дисков для root
+                file = new FileViewModel("D:\\", User.Identity.Name);//тута вставь свой путь C: нужно добавить отображение дисков для root
             }
 
             return View("FileExplorer", file);
