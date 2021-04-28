@@ -1,6 +1,8 @@
 ﻿using Clouds.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
+using System.IO;
 
 #nullable enable
 
@@ -21,16 +23,14 @@ namespace Clouds.Controllers
         //        string fileName = Path.GetFileName(file.Upload.FileName);
         //        using var fileStream =
         //           new FileStream(file.Path + Path.DirectorySeparatorChar + fileName, FileMode.Create);
-        //       await file.Upload.CopyToAsync(fileStream);
+        //        await file.Upload.CopyToAsync(fileStream);
         //    }
         //    return RedirectToAction("FileExplorer", "Home");
         //}
-        //[HttpPost]
-        //public IActionResult Download(FileViewModel file)
-        //{
-        //    string path = file.Path;
-        //    new FileExtensionContentTypeProvider().TryGetContentType(path, out string contentType);
-        //    return PhysicalFile(path, contentType, Path.GetFileName(path));
-        //}
+        public IActionResult Download(string path)
+        {
+            new FileExtensionContentTypeProvider().TryGetContentType(path, out string contentType);
+            return PhysicalFile(path, contentType, Path.GetFileName(path));
+        }
     }
 }

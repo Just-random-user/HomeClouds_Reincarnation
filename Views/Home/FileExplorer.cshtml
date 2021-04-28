@@ -2,8 +2,8 @@
 @{
     ViewData["Title"] = "File explorer";
 }
-<div class="container">
-    <div class="row row-cols-auto">
+<div class="container px-4">
+    <div class="row row-cols-auto gy-5">
         @foreach (var path in (List<string>)ViewData["Paths"])
         {
             <div class="col">
