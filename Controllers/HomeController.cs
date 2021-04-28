@@ -17,9 +17,8 @@ namespace Clouds.Controllers
         }
         public IActionResult FileExplorer(string? path = null)
         {
-
             ViewData["Paths"] = SupportClasses.Path.GetPaths(path);
-
+            ViewData["Path"] = path;
             return View("FileExplorer");
         }
     }

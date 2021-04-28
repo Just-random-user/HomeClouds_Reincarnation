@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Http;
+@model Clouds.ViewModels.FormViewModel
+
+
+@if (Model.path != null)
+{
+    <form asp-action="Upload" asp-controller="File" method="post" enctype="multipart/form-data">
+        <input type="text" hidden value="@Model.path" name="path" asp-for="@Model.path">
+        <input type="file" name="file" asp-for="@Model.file" /><br>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" value="Upload" />
+        </div>
+    </form>
+}
+else
+{
+    
+}
