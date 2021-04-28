@@ -21,13 +21,13 @@
     </svg>
 </button>
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" >
         @{
             string tmpPath = "";
             foreach (var p in Model.Path.Split(System.IO.Path.DirectorySeparatorChar))
             {
                 tmpPath += p + System.IO.Path.DirectorySeparatorChar;
-                <li class="breadcrumb-item link-secondary"><a asp-controller="Home" asp-action="FileExplorer" asp-route-Path="@tmpPath">@p</a></li>
+                <li class="breadcrumb-item"><a class="link-secondary" asp-controller="Home" asp-action="FileExplorer" asp-route-Path="@tmpPath">@p</a></li>
             }
         }
     </ol>
