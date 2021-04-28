@@ -1,10 +1,9 @@
 ﻿using Clouds.Data;
-using Clouds.Models;
-using Clouds.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
+
+
+#nullable enable
 
 namespace Clouds.Controllers
 {
@@ -16,14 +15,12 @@ namespace Clouds.Controllers
         {
             db = context;
         }
-        public IActionResult FileExplorer(FileViewModel file)
+        public IActionResult FileExplorer(string? path = null)
         {
-            if (String.IsNullOrEmpty(file.Path))
-            {
-                file = new FileViewModel("D:\\", User.Identity.Name);//тута вставь свой путь C: нужно добавить отображение дисков для root
-            }
 
-            return View("FileExplorer", file);
+            ViewData["Paths"] = SupportClasses.Path.GetPaths(path);
+
+            return View("FileExplorer");
         }
     }
 }
