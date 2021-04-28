@@ -1,0 +1,10 @@
+﻿@model Clouds.ViewModels.FileViewModel
+
+<div class="card border-light text-truncate" style="width: 7rem;">
+    <a asp-route-path="@Model.Path" class="link-second">
+        <img src="@Model.Icon" class="card-img-top" alt="icon">
+        <div class="card-body">
+            <p class="card-text">@Model.Name</p>
+        </div>
+    </a>
+</div>
