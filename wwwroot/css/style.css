@@ -1,0 +1,27 @@
+a {
+    text-decoration: none;
+}
+
+.authentication {
+    background-color: #FFFFFF;
+    width: 350px;
+    text-align: center;
+}
+
+.authentication-background {
+    background-color: #43AAC0;
+}
+
+.text-cell {
+    size: 100px;
+}
+
+.btn-primary{
+    background-color: #42AAC0;
+    color: black;
+}
+
+.logo{
+    width: 150px;
+    height: 150px;
+}
