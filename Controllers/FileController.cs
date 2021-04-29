@@ -28,6 +28,8 @@ namespace Clouds.Controllers
         public IActionResult Download(string path)
         {
             new FileExtensionContentTypeProvider().TryGetContentType(path, out string contentType);
+            if(contentType == null || path == null)
+                return RedirectToAction("FileExplorer", "Home");
             return PhysicalFile(path, contentType, Path.GetFileName(path));
         }
     }

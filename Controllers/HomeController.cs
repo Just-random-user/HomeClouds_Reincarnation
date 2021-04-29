@@ -15,6 +15,7 @@ namespace Clouds.Controllers
         {
             db = context;
         }
+        
         public IActionResult FileExplorer(string? path = null)
         {
             ViewData["Paths"] = SupportClasses.Path.GetPaths(path);

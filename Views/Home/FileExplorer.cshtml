@@ -3,21 +3,23 @@
     ViewData["Title"] = "File explorer";
 }
 
-<div class="row">
+<div class="row m-3">
     <div class="col-3">
-        @await Html.PartialAsync("_PartialForm", new FormViewModel((string?)ViewData["Path"], null))
-    </div>
+        <div class="container-fluid p-4 bg-body border rounded-3 shadow-sm">
+            @await Html.PartialAsync("_PartialForm", new FormViewModel((string?)ViewData["Path"], null))
+            </div>
+        </div>
 
-    <div class="col-7">
-        <div class="container p-4 bg-body border rounded-3 shadow-sm">
-            <div class="row row-cols-auto gy-5">
-                @foreach (var path in (List<string>)ViewData["Paths"])
-                {
-                    <div class="col">
-                        @await Component.InvokeAsync("File", new Clouds.ViewModels.FileViewModel(path))
-                    </div>
-                }
+        <div class="col">
+            <div class="container-fluid p-4 bg-body border rounded-3 shadow-sm">
+                <div class="row row-cols-auto gy-5">
+                    @foreach (var path in (List<string>)ViewData["Paths"])
+                    {
+                        <div class="col">
+                            @await Component.InvokeAsync("File", new Clouds.ViewModels.FileViewModel(path))
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>
-</div>

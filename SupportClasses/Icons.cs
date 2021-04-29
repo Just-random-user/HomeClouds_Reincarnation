@@ -1,10 +1,7 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 using System;
-
-
 #nullable enable
-
 namespace Clouds.SupportClasses
 {
 
