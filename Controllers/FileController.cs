@@ -30,6 +30,11 @@ namespace Clouds.Controllers
             new FileExtensionContentTypeProvider().TryGetContentType(path, out string contentType);
             if(contentType == null || path == null)
                 return RedirectToAction("FileExplorer", "Home");
+            if (System.IO.File.GetAttributes(path).HasFlag(FileAttributes.Directory))
+            {
+                //System.IO.Compression.ZipFile.CreateFromDirectory();
+                //todo: finish zipping and unzipping paths
+            }
             return PhysicalFile(path, contentType, Path.GetFileName(path));
         }
     }

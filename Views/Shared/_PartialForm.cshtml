@@ -7,7 +7,7 @@
 <form asp-action="Upload" asp-controller="File" method="post" enctype="multipart/form-data" class="row">
     <fieldset @if (Model.path == null) { @disable }>
         <input type="text" hidden value="@Model.path" name="path" asp-for="@Model.path">
-        <input type="file" name="file" asp-for="@Model.file" />
+        <input type="file" name="file" class="form-control my-2" asp-for="@Model.file" />
         <button type="submit" class="btn btn-secondary" value="Upload">
             <img src="~/Icons/upload.svg"> Upload
         </button>

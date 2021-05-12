@@ -17,11 +17,22 @@ a {
 }
 
 .btn-primary{
+    background-color: #4ac4de;
+    color: black;
+    border-color: #42AAC0;
+}
+
+.btn-primary:hover{
     background-color: #42AAC0;
     color: black;
+    border-color: #42AAC0;
 }
 
 .logo{
     width: 150px;
     height: 150px;
+}
+
+.file-input{ 
+    color: #42AAC0; 
 }
