@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.IO;
-
-#nullable enable
+﻿#nullable enable
 
 namespace Clouds.ViewModels
 {

@@ -1,4 +1,5 @@
-﻿using Clouds.ViewModels;
+﻿using System;
+using Clouds.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,21 +17,44 @@ namespace Clouds.Controllers
         [DisableRequestSizeLimit]
         public async Task<IActionResult> Upload(string path, IFormFile file)
         {
-            if (file != null && path != null)
+            try
             {
-                string fileName = Path.GetFileName(file.FileName);
-                using var fileStream =
-                   new FileStream(path + Path.DirectorySeparatorChar + fileName, FileMode.Create);
-                await file.CopyToAsync(fileStream);
+                if (file != null && path != null)
+                {
+                    string fileName = Path.GetFileName(file.FileName);
+                    await using var fileStream = new FileStream(path + Path.DirectorySeparatorChar + fileName, FileMode.Create);
+                    await file.CopyToAsync(fileStream);
+                }
+            
+                return Redirect( $"/?path={Path.GetDirectoryName(path)}");
             }
-            return RedirectToAction("FileExplorer", "Home", path);
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return Redirect($"/?path={Path.GetDirectoryName(path)}");
+            }
+
         }
+        
         public IActionResult Download(string path)
         {
-            new FileExtensionContentTypeProvider().TryGetContentType(path, out string contentType);
-            if(contentType == null || path == null)
-                return RedirectToAction("FileExplorer", "Home");
-            return PhysicalFile(path, contentType, Path.GetFileName(path));
+            try
+            {
+                new FileExtensionContentTypeProvider().TryGetContentType(path, out string contentType);
+                return PhysicalFile(path, contentType, Path.GetFileName(path));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return Redirect($"/?path={Path.GetDirectoryName(path)}");
+            }
         }
+
+        public IActionResult Delete(string path)
+        {
+            
+            return Redirect( $"/?path={Path.GetDirectoryName(path)}") ;
+        }
+        
     }
 }

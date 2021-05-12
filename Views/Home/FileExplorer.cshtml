@@ -7,19 +7,19 @@
     <div class="col-3">
         <div class="container-fluid p-4 bg-body border rounded-3 shadow-sm">
             @await Html.PartialAsync("_PartialForm", new FormViewModel((string?)ViewData["Path"], null))
-            </div>
         </div>
+    </div>
 
-        <div class="col">
-            <div class="container-fluid p-4 bg-body border rounded-3 shadow-sm">
-                <div class="row row-cols-auto gy-5">
-                    @foreach (var path in (List<string>)ViewData["Paths"])
-                    {
-                        <div class="col">
-                            @await Component.InvokeAsync("File", new Clouds.ViewModels.FileViewModel(path))
-                        </div>
-                    }
-                </div>
+    <div class="col">
+        <div class="container-fluid p-4 bg-body border rounded-3 shadow-sm">
+            <div class="row row-cols-auto gy-5">
+                @foreach (var path in (List<string>) ViewData["Paths"])
+                {
+                    <div class="col">
+                        @await Component.InvokeAsync("File", new Clouds.ViewModels.FileViewModel(path))
+                    </div>
+                }
             </div>
         </div>
     </div>
+</div>

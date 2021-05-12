@@ -27,7 +27,8 @@ namespace Clouds.Components
             }
             else
                 model.IsDir = false;
-            return View("File", model);
+            
+            return View("~/Views/Home/Components/File/File.cshtml", model);
         }
     }
 }

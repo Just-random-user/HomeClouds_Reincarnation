@@ -4,17 +4,35 @@
     <div class="card-img-top">
         <div class="dropdown">
             <a class="card-img-top position-absolute top-0 start-100 translate-middle btn btn-secondary-outlined btn-sm  dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="~/Icons/dots.svg" />
+                <img src="~/Icons/dots.svg"/>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" asp-action="Download" asp-controller="File" asp-route-path="@Model.Path"><img src="~/Icons/download.svg" /> Download</a></li>
-                <li><a class="dropdown-item" asp-action="Download" asp-controller="File" asp-route-path="@Model.Path"><img src="~/Icons/share.svg" /> Share</a></li>
-                <li><a class="dropdown-item" asp-action="Download" asp-controller="File" asp-route-path="@Model.Path"><img src="~/Icons/delete.svg" /> Delete</a></li>
+                <li>
+                    <a class="dropdown-item" asp-action="Download" asp-controller="File" asp-route-path="@Model.Path"><img src="~/Icons/download.svg" alt="download"/> Download</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-action="Download" asp-controller="File" asp-route-path="@Model.Path"><img src="~/Icons/share.svg" alt="Share"/> Share</a>
+                </li>
+                <li>
+                    <button type="button" class="dropdown-item btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal_@Model.Name">
+                        <img src="~/Icons/delete.svg" alt="delete"/> Delete
+                    </button>
+                </li>
             </ul>
         </div>
-        <a asp-route-path="@Model.Path" class="text-decoration-none link-secondary">
-            <img src="@Model.Icon"  class="card-img-top" alt="icon">
-        </a>
+        @if (Model.IsDir)
+        {
+            <a asp-route-path="@Model.Path" class="text-decoration-none link-secondary">
+                <img src="@Model.Icon" class="card-img-top" alt="icon">
+            </a>
+        }
+        else
+        {
+            <a href="javascript:void(0);" class="text-decoration-none link-secondary">
+                <img src="@Model.Icon" class="card-img-top" alt="icon">
+            </a>
+        }
+
     </div>
 
     <div class="card-footer m-0 p-0 text-truncate shadow-sm">
@@ -22,3 +40,4 @@
     </div>
 </div>
 
+@await Html.PartialAsync("~/Views/Home/Partial/_PartialDeleteModal.cshtml", Model, null)

@@ -1,4 +1,6 @@
-﻿using Clouds.Data;
+﻿using System;
+using System.IO;
+using Clouds.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +20,19 @@ namespace Clouds.Controllers
         
         public IActionResult FileExplorer(string? path = null)
         {
-            ViewData["Paths"] = SupportClasses.Path.GetPaths(path);
-            ViewData["Path"] = path;
-            return View("FileExplorer");
+            try
+            {
+                ViewData["Paths"] = SupportClasses.Path.GetPaths(path);
+                ViewData["Path"] = path;
+                return View("FileExplorer");
+            }
+            catch (Exception e)
+            {
+                ViewData["Paths"] = SupportClasses.Path.GetPaths(path);
+                ViewData["Path"] = path;
+                return Redirect($"/?path={Path.GetDirectoryName(path)}");
+            }
+
         }
     }
 }
