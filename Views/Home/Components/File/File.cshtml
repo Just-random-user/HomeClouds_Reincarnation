@@ -11,7 +11,7 @@
                     <a class="dropdown-item" asp-action="Download" asp-controller="File" asp-route-path="@Model.Path"><img src="~/Icons/download.svg" alt="download"/> Download</a>
                 </li>
                 <li>
-                    <a class="dropdown-item" asp-action="Download" asp-controller="File" asp-route-path="@Model.Path"><img src="~/Icons/share.svg" alt="Share"/> Share</a>
+                    <a class="dropdown-item" asp-action="Share" asp-controller="File" asp-route-path="@Model.Path"><img src="~/Icons/share.svg" alt="Share"/> Share</a>
                 </li>
                 <li>
                     <button type="button" class="dropdown-item btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal_@Model.Name">

@@ -10,6 +10,7 @@ namespace Clouds.Data
     public class CloudsDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<SharedFiles> SharedFiles { get; set; }
         public CloudsDbContext(DbContextOptions<CloudsDbContext> options) : base(options)
         {
             Database.EnsureCreated();
