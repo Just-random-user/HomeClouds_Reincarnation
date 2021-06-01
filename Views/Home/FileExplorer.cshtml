@@ -4,6 +4,7 @@
     ViewData["Title"] = "File explorer";
 }
 
+
 <div class="row m-3">
     <div class="col-3">
         <div class="container-fluid p-4 bg-body border rounded-3 shadow-sm">
@@ -14,6 +15,7 @@
         <div class="col">
             <div class="container-fluid p-4 bg-body border rounded-3 shadow-sm">
                 <div class="mb-4">
+                    @ViewData["test"]
                     @if (ViewData["Path"] != null)
                     {
                         string currentPath = "";

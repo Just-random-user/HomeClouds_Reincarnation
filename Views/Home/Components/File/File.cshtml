@@ -11,10 +11,12 @@
                     <a class="dropdown-item" asp-action="Download" asp-controller="File" asp-route-path="@Model.Path"><img src="~/Icons/download.svg" alt="download"/> Download</a>
                 </li>
                 <li>
-                    <a class="dropdown-item" asp-action="Share" asp-controller="File" asp-route-path="@Model.Path"><img src="~/Icons/share.svg" alt="Share"/> Share</a>
+                    <button type="button" class="dropdown-item btn" data-bs-toggle="modal" data-bs-target="#shareModal_@Model.Name">
+                        <img src="~/Icons/delete.svg" alt="delete"/> <img src="~/Icons/share.svg" alt="Share"/> Share
+                    </button>
                 </li>
                 <li>
-                    <button type="button" class="dropdown-item btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal_@Model.Name">
+                    <button type="button" class="dropdown-item btn" data-bs-toggle="modal" data-bs-target="#deleteModal_@Model.Name">
                         <img src="~/Icons/delete.svg" alt="delete"/> Delete
                     </button>
                 </li>
@@ -41,3 +43,4 @@
 </div>
 
 @await Html.PartialAsync("~/Views/Home/Partial/_PartialDeleteModal.cshtml", Model, null)
+@await Html.PartialAsync("~/Views/Home/Partial/_PartialSharedLinkModal.cshtml", Model, null)

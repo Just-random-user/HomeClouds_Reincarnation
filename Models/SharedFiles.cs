@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Clouds.Models
 {
@@ -9,11 +6,8 @@ namespace Clouds.Models
     {
         public string Id { get; set; }
 
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime ExpiresAt { get; set; }
+        public string Link { get; set; }
 
         public string FilePath { get; set; }
-        
     }
 }

@@ -1,0 +1,18 @@
+﻿@model Clouds.ViewModels.FileViewModel
+
+<div class="modal fade" id="shareModal_@Model.Name" tabindex="-1" aria-labelledby="shareModal_@Model.Name" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="shareModal_@Model.Name">Generate new download link</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-outline-primary generateButton" data-path="@Model.Path">Generate link</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -59,19 +59,10 @@ namespace Clouds.Controllers
         }
         
         [HttpPost]
-        public IActionResult Share(string path)
+        public IActionResult Share()
         {   
-            try
-            {
-                string path = _db.SharedFiles.FirstOrDefault(f => f.Id == file)?.FilePath;
-                new FileExtensionContentTypeProvider().TryGetContentType(path, out string contentType);
-                return PhysicalFile(path, contentType, Path.GetFileName(path));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return RedirectToAction("FileExplorer", "Home");
-            }
+            
+            return Json(new { status = "success", link = "kek"});
         } 
         
         public IActionResult SharedDownload(string file)
