@@ -1,10 +1,11 @@
 ﻿$(".generateButton").click(function () {
+    let btn = $(this)
         $.ajax({
             type: "POST",
-            url: "Share",
-            data: "path=" + $(this).data("path"),
+            url: btn.data("url"),
+            data: {path: btn.data("path")},
             success: function (data) {
-                $(this).replaceWith(data.link)
+                btn.replaceWith(data.link)
             }
         })
     }

@@ -28,7 +28,7 @@ namespace Clouds
             {
                 options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
             });
-
+            services.AddHttpContextAccessor();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Clouds.Data;
 
@@ -57,34 +58,26 @@ namespace Clouds.Controllers
                 return Redirect($"/?path={Path.GetDirectoryName(path)}");
             }
         }
-        
-        [HttpPost]
-        public IActionResult Share()
-        {   
-            
-            return Json(new { status = "success", link = "kek"});
-        } 
-        
-        public IActionResult SharedDownload(string file)
-        {   
-            try
-            {
-                string path = _db.SharedFiles.FirstOrDefault(f => f.Id == file)?.FilePath;
-                new FileExtensionContentTypeProvider().TryGetContentType(path, out string contentType);
-                return PhysicalFile(path, contentType, Path.GetFileName(path));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return RedirectToAction("FileExplorer", "Home");
-            }
-        }
 
         public IActionResult Delete(string path)
         {
             
             return Redirect( $"/?path={Path.GetDirectoryName(path)}") ;
         }
-        
+
+        public IActionResult SharedDownload(string guid)
+        {
+            try
+            {
+                string path = _db.SharedFiles.FirstOrDefault(f => f.Link == guid)?.FilePath;
+                new FileExtensionContentTypeProvider().TryGetContentType(path, out string contentType);
+                return PhysicalFile(path, contentType, Path.GetFileName(path));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return BadRequest();
+            }
+        }
     }
 }

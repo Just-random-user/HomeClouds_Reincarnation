@@ -8,6 +8,6 @@ namespace Clouds.Models
         public string Login { get; set; }
         public string Password { get; set; }
 
-        public List<SharedFiles> SharedFiles { get; set; }
+        public ICollection<SharedFiles> SharedFiles { get; set; } = new List<SharedFiles>();
     }
 }

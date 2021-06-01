@@ -8,7 +8,7 @@ namespace Clouds.SupportClasses
 {
     public static class LinkGenerator
     {
-        public static string GetDownloadLink(int userId,string path, CloudsDbContext db)
+        public static string GetDownloadLink(string login, string path, CloudsDbContext db)
         {
             string link = null;
             
@@ -16,12 +16,9 @@ namespace Clouds.SupportClasses
             {
                 return link;
             }
-
-            if (db.Users.Any(u => u.Id == userId && u.SharedFiles.Any(f => f.FilePath == path)))
-            {
-                link = db.SharedFiles.FirstOrDefault(f => f.FilePath == path)?.Link;
-            }
-
+            
+            link = db.SharedFiles.FirstOrDefault(f => f.FilePath == path)?.Link;
+            
             if (link == null)
             {
                 link = Guid.NewGuid().ToString();
@@ -30,9 +27,14 @@ namespace Clouds.SupportClasses
                     FilePath = path,
                     Link = link
                 };
-                db.SharedFiles.Add(sharedFile);
-                db.Users.FirstOrDefault(u => u.Id == userId)?.SharedFiles.Add(sharedFile);
-                db.SaveChanges();
+                var user = db.Users.FirstOrDefault(u => u.Login == login);
+                if (user != null)
+                {
+                    sharedFile.User = user;
+                    user.SharedFiles.Add(sharedFile);
+                    db.Users.Update(user);
+                    db.SaveChanges(); 
+                }
             }
 
             return link;
