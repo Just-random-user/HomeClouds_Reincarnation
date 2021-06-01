@@ -19,10 +19,11 @@
                     @if (ViewData["Path"] != null)
                     {
                         string currentPath = "";
+                        <a asp-route-path="@System.IO.Path.GetPathRoot(null)" class="text-decoration-none link-secondary">Route</a>
                         foreach (string path in ViewData["Path"].ToString().Split(System.IO.Path.DirectorySeparatorChar))
                         {
                             currentPath = System.IO.Path.Combine(currentPath, path);
-                            <a asp-route-path="@currentPath" class="text-decoration-none link-secondary">@path /</a>
+                            <a asp-route-path="@(currentPath + System.IO.Path.DirectorySeparatorChar)" class="text-decoration-none link-secondary">/ @path</a>
                         }
                     }
                 </div>
