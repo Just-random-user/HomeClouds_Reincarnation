@@ -79,5 +79,19 @@ namespace Clouds.Controllers
                 return BadRequest();
             }
         }
+
+        public IActionResult Delete(string path)
+        {
+            try
+            {
+                System.IO.File.Delete(path);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Hello world!");
+            }
+            return Redirect( $"/?path={Path.GetDirectoryName(path)}") ;
+        }
+        
     }
 }
