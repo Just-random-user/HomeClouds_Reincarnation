@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -49,6 +50,15 @@ namespace Clouds.Controllers
         {
             try
             {
+                if (Directory.Exists(path))
+                {
+                    var tmpFileName = Path.GetRandomFileName();
+                    tmpFileName = tmpFileName.Replace(Path.GetExtension(tmpFileName), ".zip");
+                    var zipPath = Path.GetPathRoot(path) + tmpFileName;
+                    ZipFile.CreateFromDirectory(path, zipPath);
+                    path = zipPath;
+                }
+
                 new FileExtensionContentTypeProvider().TryGetContentType(path, out string contentType);
                 return PhysicalFile(path, contentType, Path.GetFileName(path));
             }
@@ -57,12 +67,10 @@ namespace Clouds.Controllers
                 Console.WriteLine(e);
                 return Redirect($"/?path={Path.GetDirectoryName(path)}");
             }
-        }
-
-        public IActionResult Delete(string path)
-        {
-            
-            return Redirect( $"/?path={Path.GetDirectoryName(path)}") ;
+            finally
+            {
+                System.IO.File.Delete(path);
+            }
         }
 
         public IActionResult SharedDownload(string guid)
