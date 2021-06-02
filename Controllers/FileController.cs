@@ -57,10 +57,18 @@ namespace Clouds.Controllers
                     var zipPath = Path.GetPathRoot(path) + tmpFileName;
                     ZipFile.CreateFromDirectory(path, zipPath);
                     path = zipPath;
+                    var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None,
+                        (int)(new FileInfo(path)).Length, FileOptions.DeleteOnClose);
+                    return File(
+                        stream, System.Net.Mime.MediaTypeNames.Application.Octet, Path.GetFileName(path));
                 }
-
-                new FileExtensionContentTypeProvider().TryGetContentType(path, out string contentType);
-                return PhysicalFile(path, contentType, Path.GetFileName(path));
+                else
+                {
+                    var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None,
+                        (int)(new FileInfo(path)).Length, FileOptions.DeleteOnClose);
+                    return File(
+                        stream, System.Net.Mime.MediaTypeNames.Application.Octet, Path.GetFileName(path));  
+                }
             }
             catch (Exception e)
             {
@@ -69,7 +77,7 @@ namespace Clouds.Controllers
             }
             finally
             {
-                System.IO.File.Delete(path);
+                //System.IO.File.Delete(path);
             }
         }
 
@@ -78,8 +86,25 @@ namespace Clouds.Controllers
             try
             {
                 string path = _db.SharedFiles.FirstOrDefault(f => f.Link == guid)?.FilePath;
-                new FileExtensionContentTypeProvider().TryGetContentType(path, out string contentType);
-                return PhysicalFile(path, contentType, Path.GetFileName(path));
+                if (Directory.Exists(path))
+                {
+                    var tmpFileName = Path.GetRandomFileName();
+                    tmpFileName = tmpFileName.Replace(Path.GetExtension(tmpFileName), ".zip");
+                    var zipPath = Path.GetPathRoot(path) + tmpFileName;
+                    ZipFile.CreateFromDirectory(path, zipPath);
+                    path = zipPath;
+                    var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None,
+                        (int)(new FileInfo(path)).Length, FileOptions.DeleteOnClose);
+                    return File(
+                        stream, System.Net.Mime.MediaTypeNames.Application.Octet, Path.GetFileName(path));
+                }
+                else
+                {
+                    var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None,
+                        (int)(new FileInfo(path)).Length, FileOptions.DeleteOnClose);
+                    return File(
+                        stream, System.Net.Mime.MediaTypeNames.Application.Octet, Path.GetFileName(path));  
+                }
             }
             catch (Exception e)
             {

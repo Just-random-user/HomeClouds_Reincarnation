@@ -12,7 +12,7 @@ namespace Clouds.SupportClasses
         {
             string link = null;
             
-            if (string.IsNullOrEmpty(path) || !File.Exists(path))
+            if (string.IsNullOrEmpty(path))
             {
                 return link;
             }
